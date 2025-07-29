@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="page-header">
+        <div class="header-container">
+            <div class="page-logo">
+                <img src="logo.png" class="logo-image" alt="Logo">
+                <a href="index.html" class="logo-text">Wishlock</a>
+            </div>
+            <a href="index.html" class="back-link">Back to Home</a>
+        </div>
+    </header>
+
+    <main id="product-detail" class="product-detail-section">
+        <!-- Product details will be injected here -->
+    </main>
+
+    <script>
+        // Product data
+        const products = [
+            {id: 1, name: "Naruto", price: "$25", image: "product-pic/naruto.jpg", desc: "Limited edition Naruto figure."},
+            {id: 2, name: "Retro Sneakers", price: "$40", image: "item2.jpg", desc: "Stylish retro sneakers from the 90s."},
+            {id: 3, name: "Classic Leather Bag", price: "$35", image: "item3.jpg", desc: "Elegant and durable leather bag."},
+            {id: 4, name: "Vintage Jacket", price: "$50", image: "item4.jpg", desc: "Cool vintage-style jacket."},
+            {id: 5, name: "Gaming Headset", price: "$60", image: "item5.jpg", desc: "High-quality sound for gamers."},
+            {id: 6, name: "Leather Wallet", price: "$20", image: "item6.jpg", desc: "Compact wallet with coin pocket."},
+            {id: 7, name: "Antique Clock", price: "$120", image: "item7.jpg", desc: "Classic antique design wall clock."},
+            {id: 8, name: "Sports Watch", price: "$70", image: "item8.jpg", desc: "Water-resistant digital sports watch."}
+        ];
+
+        // Get product ID from URL
+        const params = new URLSearchParams(window.location.search);
+        const id = parseInt(params.get("id"));
+        const product = products.find(p => p.id === id);
+        const container = document.getElementById("product-detail");
+
+        // Display product
+        if (product) {
+            container.innerHTML = `
+                <div class="product-detail-container">
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <h2>${product.name}</h2>
+                        <p class="product-price">${product.price}</p>
+                        <p class="product-desc">${product.desc}</p>
+                        <button class="buy-button">Buy Now</button>
+                    </div>
+                </div>
+            `;
+        } else {
+            container.innerHTML = `<p style="text-align:center;">Product not found.</p>`;
+        }
+    </script>
+</body>
+</html>

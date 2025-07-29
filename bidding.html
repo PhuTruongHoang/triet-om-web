@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bidding Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="page-header">
+        <div class="header-container">
+            <div class="page-logo">
+                <img src="logo.png" class="logo-image" alt="Logo">
+                <a href="index.html" class="logo-text">Wishlock</a>
+            </div>
+            <a href="index.html" class="back-link" style="color:white;">Back to Home</a>
+        </div>
+    </header>
+
+    <!-- Nội dung sản phẩm đấu giá -->
+    <main class="bidding-page" style="text-align:center; margin:30px;">
+        <div id="bidding-product"></div>
+
+        <!-- Form đặt giá -->
+        <div class="bidding-box" style="margin-top:20px;">
+            <input type="number" id="bidInput" placeholder="Enter your bid" min="1" style="padding:8px;">
+            <button class="bid-button" onclick="placeBid()">Place Bid</button>
+        </div>
+
+        <!-- Thời gian đếm ngược
+        <div class="timer" style="margin-top:15px;">
+            Auction ends in: <span id="countdown">00:05:00</span>
+        </div> -->
+    </main>
+
+    <script>
+        // Danh sách sản phẩm đấu giá
+        const bidProducts = [
+            {id: 101, name: "Rare Collectible Watch", currentBid: 120, image: "product-pic/naruto.jpg"},
+            {id: 102, name: "Limited Edition Sneakers", currentBid: 200, image: "rare2.jpg"},
+            {id: 103, name: "Vintage Leather Bag", currentBid: 150, image: "rare3.jpg"},
+            {id: 104, name: "Collector's Antique Clock", currentBid: 500, image: "rare4.jpg"}
+        ];
+
+        // Lấy ID từ URL
+        const params = new URLSearchParams(window.location.search);
+        const id = parseInt(params.get("id"));
+        const product = bidProducts.find(p => p.id === id);
+
+        const container = document.getElementById("bidding-product");
+        let currentBid = product ? product.currentBid : 0;
+
+        // Hiển thị thông tin sản phẩm
+        if (product) {
+            container.innerHTML = `
+                <div class="bidding-product-container">
+                    <img src="${product.image}" alt="${product.name}" class="bidding-image">
+                    <div class="bidding-info">
+                        <p class="timer">Auction ends in: <span class="timer" id="countdownTimer">00:05:00</span></p>
+                        <h2>${product.name}</h2>
+                        <p>Current Highest Bid: <span id="currentBid">$${currentBid}</span></p>
+                    </div>
+                </div>
+            `;
+        } else {
+            container.innerHTML = `<p>Product not found.</p>`;
+        }
+
+        // Xử lý đặt giá
+        function placeBid() {
+            const bid = parseInt(document.getElementById('bidInput').value);
+            if (bid > currentBid) {
+                currentBid = bid;
+                document.getElementById('currentBid').textContent = `$${currentBid}`;
+                alert("Your bid has been placed!");
+            } else {
+                alert("Your bid must be higher than the current bid!");
+            }
+        }
+
+        // Đếm ngược thời gian
+        let time = 5 * 60; // 5 phút
+        const countdownEl = document.getElementById('countdownTimer');
+        setInterval(() => {
+            if (time > 0) {
+                time--;
+                const min = String(Math.floor(time / 60)).padStart(2, '0');
+                const sec = String(time % 60).padStart(2, '0');
+                countdownEl.textContent = `00:${min}:${sec}`;
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
