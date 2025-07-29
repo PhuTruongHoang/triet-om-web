@@ -31,6 +31,10 @@ main {
     justify-content: flex-start;
     align-items: center;
 }
+.page-logo {
+    display: flex;
+    align-items: center; 
+}
 .logo-image {
     width: 40px;
     margin-right: 10px;
@@ -40,6 +44,7 @@ main {
     color: white;
     text-decoration: none;
     font-size: 24px;
+    line-height: 1;
 }
 .search-bar {
     font-size: 16px;
