@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wishlock</title>
-    <link rel="icon" type="image/png" href="product-pic/logo-pic.jpg">
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="product-pic/logo-pic.jpg" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <div class="wrapper">
@@ -13,11 +13,11 @@
         <header class="page-header">
             <div class="header-container">
                 <div class="page-logo">
-                    <img src="product-pic/logo-pic.jpg" class="logo-image" alt="Logo">
-                    <span class="logo-text">Wishlock </span>
+                    <img src="product-pic/logo-pic.jpg" class="logo-image" alt="Logo" />
+                    <span class="logo-text">Wishlock</span>
                 </div>
                 <div class="search-bar">
-                    <input type="text" class="search-input" placeholder="Looking for something?">
+                    <input type="text" class="search-input" placeholder="Looking for something?" />
                     <button class="search-button">
                         <svg width="20" height="20">
                             <path d="M20.79,19.8l-3.94-3.94a7.86,7.86,0,1,0-1,1l3.94,3.94a.7.7,0,0,0,.5.21.67.67,0,0,0,.49-.21A.69.69,0,0,0,20.79,19.8ZM6.28,15.39a6.44,6.44,0,1,1,9.11,0,6.43,6.43,0,0,1-9.11,0Z"></path>
@@ -31,73 +31,19 @@
             </div>
         </header>
 
-        <!-- Nội dung chính -->
+        <!-- Main -->
         <main class="main-content">
-            <!-- Phần Bidding -->
-            <section class="bid-section">
-                <h2>Exclusive Auction</h2>
-                <div id="bid-grid" class="bid-grid">
-                    <!-- JS sẽ render sản phẩm bid vào đây -->
-                </div>
-            </section>
-            <script>
-                const bidProducts = [
-                    {id: 101, name: "Rare Collectible Watch", currentBid: "$120", image: "product-pic/naruto.jpg"},
-                    {id: 102, name: "Limited Edition Sneakers", currentBid: "$200", image: "rare2.jpg"},
-                    {id: 103, name: "Vintage Leather Bag", currentBid: "$150", image: "rare3.jpg"},
-                    {id: 104, name: "Collector's Antique Clock", currentBid: "$500", image: "rare4.jpg"}
-                ];
+            <div class="container">
+                <section class="bid-section">
+                    <h2>Exclusive Auction</h2>
+                    <div id="bid-grid" class="bid-grid"></div>
+                </section>
 
-                const bidGrid = document.getElementById('bid-grid');
-
-                bidGrid.innerHTML = bidProducts.map(p => `
-                    <div class="product-card bidding">
-                        <a href="bidding.html?id=${p.id}">
-                            <img src="${p.image}" alt="${p.name}">
-                        </a>
-                        <h3>${p.name}</h3>
-                        <p>Current Bid: ${p.currentBid}</p>
-                        <a href="bidding.html?id=${p.id}" class="bid-link">Bid Now</a>
-                    </div>
-                `).join('');
-            </script>
-
-
-            <!-- Phần Sản phẩm -->
-            <section class="product-section">
-                <h2>Items</h2>
-                <div id="product-grid" class="product-grid">
-                    <!-- JS sẽ render sản phẩm vào đây -->
-                </div>
-            </section>
-
-            <script>
-                // Danh sách sản phẩm
-                const products = [
-                    {id: 1, name: "Naruto", price: "$25", image: "product-pic/naruto.jpg"},
-                    {id: 2, name: "Retro Sneakers", price: "$40", image: "item2.jpg"},
-                    {id: 3, name: "Classic Leather Bag", price: "$35", image: "item3.jpg"},
-                    {id: 4, name: "Vintage Jacket", price: "$50", image: "item4.jpg"},
-                    {id: 5, name: "Gaming Headset", price: "$60", image: "item5.jpg"},
-                    {id: 6, name: "Leather Wallet", price: "$20", image: "item6.jpg"},
-                    {id: 7, name: "Antique Clock", price: "$120", image: "item7.jpg"},
-                    {id: 8, name: "Sports Watch", price: "$70", image: "item8.jpg"}
-                ];
-
-                const grid = document.getElementById('product-grid');
-
-                // Tạo HTML cho mỗi sản phẩm
-                grid.innerHTML = products.map(p => `
-                    <div class="product-card">
-                        <a href="product.html?id=${p.id}">
-                            <img src="${p.image}" alt="${p.name}">
-                        </a>
-                        <h3>${p.name}</h3>
-                        <p>${p.price}</p>
-                        <button class="buy-button" onclick="location.href='product.html?id=${p.id}'">Buy Now</button>
-                    </div>
-                `).join('');
-            </script>
+                <section class="product-section">
+                    <h2>Items</h2>
+                    <div id="product-grid" class="product-grid"></div>
+                </section>
+            </div>
         </main>
 
         <!-- Footer -->
@@ -105,5 +51,49 @@
             <p>&copy; 2025 Wishlock Shop | All Rights Reserved</p>
         </footer>
     </div>
+
+    <script>
+        const bidProducts = [
+            {id: 101, name: "Rare Collectible Watch", currentBid: "$120", image: "product-pic/1.jpg"},
+            {id: 102, name: "Limited Edition Sneakers", currentBid: "$200", image: "product-pic/2.jpg"},
+            {id: 103, name: "Vintage Leather Bag", currentBid: "$150", image: "product-pic/3.jpg"},
+            {id: 104, name: "Collector's Antique Clock", currentBid: "$500", image: "product-pic/4.jpg"}
+        ];
+
+        const bidGrid = document.getElementById('bid-grid');
+        bidGrid.innerHTML = bidProducts.map(p => `
+            <div class="product-card bidding">
+                <a href="bidding.html?id=${p.id}">
+                    <img src="${p.image}" alt="${p.name}">
+                </a>
+                <h3>${p.name}</h3>
+                <p>Current Bid: ${p.currentBid}</p>
+                <a href="bidding.html?id=${p.id}" class="bid-link">Bid Now</a>
+            </div>
+        `).join('');
+
+        const products = [
+            {id: 1, name: "Naruto", price: "$25", image: "product-pic/5.jpg"},
+            {id: 2, name: "Retro Sneakers", price: "$40", image: "product-pic/6.jpg"},
+            {id: 3, name: "Classic Leather Bag", price: "$35", image: "product-pic/7.jpg"},
+            {id: 4, name: "Vintage Jacket", price: "$50", image: "product-pic/8.jpg"},
+            {id: 5, name: "Gaming Headset", price: "$60", image: "product-pic/9.jpg"},
+            {id: 6, name: "Leather Wallet", price: "$20", image: "product-pic/10.jpg"},
+            {id: 7, name: "Antique Clock", price: "$120", image: "product-pic/11.jpg"},
+            {id: 8, name: "Sports Watch", price: "$70", image: "product-pic/12.jpg"}
+        ];
+
+        const grid = document.getElementById('product-grid');
+        grid.innerHTML = products.map(p => `
+            <div class="product-card">
+                <a href="product.html?id=${p.id}">
+                    <img src="${p.image}" alt="${p.name}">
+                </a>
+                <h3>${p.name}</h3>
+                <p>${p.price}</p>
+                <button class="buy-button" onclick="location.href='product.html?id=${p.id}'">Buy Now</button>
+            </div>
+        `).join('');
+    </script>
 </body>
 </html>

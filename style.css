@@ -1,3 +1,7 @@
+/* General Reset */
+* {
+    box-sizing: border-box;
+}
 
 /* Layout */
 html, body {
@@ -7,13 +11,23 @@ html, body {
     color: white;
     background: #333;
 }
+
 .wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
+
 main {
     flex: 1;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 /* Header */
@@ -28,12 +42,14 @@ main {
 }
 .header-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
+    gap: 10px;
 }
 .page-logo {
     display: flex;
-    align-items: center; 
+    align-items: center;
 }
 .logo-image {
     width: 40px;
@@ -41,218 +57,113 @@ main {
 }
 .logo-text {
     font-weight: bold;
-    color: white;
-    text-decoration: none;
     font-size: 24px;
-    line-height: 1;
+    text-decoration: none;
+    color: white;
 }
 .search-bar {
-    font-size: 16px;
-    margin-left: 40px;
     display: flex;
-    justify-content: center;
+    margin-left: 20px;
     border: 0.5px solid rgb(156, 156, 156);
     border-radius: 4px;
 }
 .search-input {
-    font-size: 16px;
-    padding: 8px 8px 8px 16px;
+    padding: 8px 16px;
+    width: 300px;
     border: none;
-    border-radius: 4px 0 0 4px;
-    width: 400px;
     background: #333;
+    color: white;
 }
 .search-button {
-    padding: 8px 12px; 
-    border: 0px solid rgb(156, 156, 156);
+    padding: 8px 12px;
     background: #333;
-    color: rgb(156, 156, 156); 
-    border-radius:  0 4px 4px 0;
+    color: rgb(156, 156, 156);
+    border: none;
     cursor: pointer;
 }
-
 .user-authentication {
-    margin: auto 0 auto auto;
-    padding-left: 24px;
+    margin-left: auto;
     display: flex;
-    align-items: center;
+    gap: 10px;
 }
 .user-authentication button {
-    margin-left: 10px;
     padding: 8px 12px;
+    background: #333;
     color: white;
+    border: 0.5px solid rgb(156, 156, 156);
     border-radius: 4px;
     cursor: pointer;
-    background: #222;
-    font-size: 16px;
-    border: 0.5px solid rgb(156, 156, 156);
-    background: #333;
 }
-
 .user-authentication button:hover {
     background: #555;
 }
-/* Body */
+
+/* Content */
 .main-content {
-    padding: 10px 40px 80px 40px;
     background: #222;
-    min-height: calc(100vh - 80px); /* Adjust height to fill the page */
 }
-.bid-section h2,
-.product-section h2 {
+
+/* Sections */
+section {
+    margin: 30px 0;
+}
+section h2 {
     text-align: left;
-    margin-left: 40px; /* tạo khoảng cách nhỏ bên trái */
+    margin-bottom: 20px;
 }
 
-/* Bid Section */
-.bid-section {
-    text-align: center;
-    margin: 30px auto;
-}
-.bidding img {
-    width: 300px;
-    border-radius: 10px;
-}
-.bid-link {
-    display: inline-block;
-    padding: 10px;
-    background: #ff9800;
-    color: #fff;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    margin-top: 10px;
-}
-.bid-link:hover {
-    background: #e68a00;
-}
-
-.bid-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin-top: 20px;
-    text-align: center;
-}
-
-.product-card.bidding img {
-    width: 100%;
-    border-radius: 8px;
-}
-
-.bid-link {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 16px;
-    background: #ff9800;
-    color: #fff;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.bid-link:hover {
-    background: #e68a00;
-}
-
-/* Product Section */
-.product-section {
-    margin-top: 40px;
-    text-align: center;
-}
+/* Bid & Product Grids */
+.bid-grid,
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 20px;
-    margin-top: 20px;
 }
-.product-card {
+
+.product-card,
+.product-card.bidding {
     background: #333;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
-.product-card img {
+
+.product-card img,
+.product-card.bidding img {
     width: 100%;
+    height: 60%;
+    object-fit: cover;
     border-radius: 10px;
     transition: transform 0.3s;
 }
+
 .product-card img:hover {
     transform: scale(1.05);
 }
-.buy-button {
+
+.buy-button,
+.bid-link {
     margin-top: 10px;
     padding: 10px;
-    width: 100%;
     background: #28a745;
     color: #fff;
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
 }
 .buy-button:hover {
     background: #218838;
 }
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 cột ngang */
-    gap: 20px;
-    margin-top: 20px;
+.bid-link {
+    background: #ff9800;
 }
-
-.product-card img {
-    width: 100%;
-    border-radius: 8px;
-}
-
-/* Bidding Page */
-.bidding-page {
-    text-align: center;
-    margin-top: 40px;
-}
-.bidding-image {
-    max-width: 400px;
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-.bidding-box {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px auto;
-    max-width: 400px;
-}
-.bidding-box input {
-    flex: 1;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-}
-
-.timer {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-align: left;
-    color: red;
-}
-.bidding-product-container {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    align-items: flex-start;
-    margin: 40px auto;
-    max-width: 800px;
-}
-
-.bidding-info {
-    display: flex;
-    flex-direction: column; /* CHẮC CHẮN là xếp theo chiều dọc */
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 10px;
+.bid-link:hover {
+    background: #e68a00;
 }
 
 /* Footer */
@@ -264,49 +175,164 @@ main {
     border-top: 0.5px solid rgb(156, 156, 156);
 }
 
-/* Product Detail Layout */
-.product-detail-section {
-    padding: 40px;
-    background-color: #222;
-    display: flex;
-    justify-content: center;
+/* Responsive Fix */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+    .user-authentication {
+        width: 100%;
+        justify-content: flex-start;
+    }
 }
 
-.product-detail-container {
+
+/* Bidding Page */
+.bidding-page {
+    text-align: center;
+    margin-top: 40px;
+}
+.bidding-product-container {
+    margin: 0 auto;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    gap: 80px;
-    flex-wrap: wrap;
-    color: white;
+    gap: 3rem;
+    padding: 40px 36px;
     max-width: 1000px;
+    width: 100%;
+}
+.bidding-image {
+    width: 450px;
+    height: 450px;
+    border: 1px solid #333; 
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #444; 
+}
+
+.bidding-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.bidding-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    max-width: 400px;
+}
+.timer {
+    font-size: 22px;
+    font-weight: bold;
+    color: orange;
+}
+.bidding-box {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 10px;
+    width: 100%;
+}
+.bidding-box input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+.bid-button {
+    padding: 10px 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.bid-button:hover {
+    background: #0056b3;
+}
+
+/* Product Detail Layout */
+.product-detail-container {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3rem;
+    padding: 40px 36px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.product-image {
+    width: 450px;
+    height: 450px;
+    border: 1px solid #333; 
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #444; 
 }
 
 .product-image img {
-    max-width: 400px;
-    width: 100%;
-    border-radius: 10px;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 .product-info {
-    max-width: 400px;
-    text-align: left;
+    max-width: 500px;
 }
 
 .product-info h2 {
-    font-size: 28px;
-    margin-bottom: 10px;
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
 .product-price {
-    font-size: 20px;
-    color: #ff9800;
-    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 1rem;
 }
 
 .product-desc {
-    font-size: 16px;
-    margin-bottom: 20px;
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 1.5rem;
+}
+
+.buy-button {
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.buy-button:hover {
+    background-color: #1f5f8b;
 }
 
 .back-link {
@@ -318,4 +344,30 @@ main {
 
 .back-link:hover {
     text-decoration: underline;
+}
+
+/* Footer (reuse from index) */
+.page-footer {
+    text-align: center;
+    padding: 15px;
+    background: #222;
+    color: #fff;
+    border-top: 0.5px solid rgb(156, 156, 156);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-detail-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-image img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .product-info {
+        max-width: 100%;
+    }
 }
