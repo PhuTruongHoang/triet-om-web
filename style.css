@@ -315,42 +315,217 @@ body {
     text-align: left;
 }
 
-.product-desc h3,
-.product-details h3 {
-    font-size: 18px;
-    margin-bottom: 6px;
+.section-heading {
+    width: 100%;
     border-bottom: 1px solid #444;
-    padding-bottom: 4px;
+    margin: 12px 0;
+}
+
+.section-heading h3 {
+    margin: 0;
+    font-size: 18px;
     color: #ccc;
     text-align: left;
 }
 
-.product-desc p {
-    margin: 0;
-    font-size: 15px;
-    line-height: 1.5;
-    text-align: left;
+/* ====== Shipping Fee ====== */
+.product-shipping {
+    font-size: 16px;
+    margin: 0 0 16px;
 }
 
+.product-shipping strong {
+    display: inline-block;
+    width: 140px;
+    color: #eee;
+}
+
+/* ====== Description ====== */
+.product-desc p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #ddd;
+    /* margin-bottom: 16px; */
+}
+
+/* ====== Item Details Table ====== */
 .product-details table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 15px;
+    /* margin-bottom: 24px; */
 }
 
 .product-details th {
     text-align: left;
-    color: #ccc;
-    padding: 4px 10px 4px 0;
+    color: #aaa;
+    font-weight: 500;
+    padding: 6px 12px 6px 0;
     width: 140px;
     vertical-align: top;
 }
 
 .product-details td {
-    color: #fff;
-    padding: 4px 0;
+    color: #eee;
+    padding: 6px 0;
 }
 
+/* ====== Seller Section ====== */
+.product-seller {
+    background-color: #1a1a1a;
+    padding: 16px;
+    border-radius: 10px;
+    /* margin-bottom: 24px; */
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.05);
+}
+
+.seller-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.seller-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #666;
+}
+
+.seller-info p {
+    margin: 2px 0;
+    font-size: 14px;
+    color: #ccc;
+}
+
+.seller-info strong {
+    font-size: 16px;
+    color: #fff;
+}
+
+/* ====== Comment Input Section ====== */
+.comment-shortcuts {
+    margin-top: 12px;
+    background-color: #1a1a1a;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.05);
+}
+
+.comment-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #ccc;
+}
+
+#comment-input {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    font-size: 14px;
+    background-color: #2a2a2a;
+    border: 1px solid #555;
+    border-radius: 8px;
+    color: white;
+    resize: none;
+    box-sizing: border-box;
+    margin-bottom: 6px;
+}
+
+.comment-char-count {
+    text-align: right;
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.comment-note {
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.send-comment-btn {
+    width: 100%;
+    padding: 10px;
+    background: #ff4040;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.send-comment-btn:hover {
+    background: #e63b3b;
+}
+
+/* ====== Other User Comments ====== */
+.other-users-comments {
+    /* margin-top: 24px; */
+    padding-top: 8px;
+    color: white;
+    font-family: inherit;
+    text-align: left;
+}
+
+.other-users-comments .comment {
+    background-color: #1f1f1f;
+    border: 1px solid #333;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+    border-radius: 10px;
+}
+
+.other-users-comments .comment p {
+    margin: 4px 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #ddd;
+}
+
+.other-users-comments .comment strong {
+    color: #61dafb;
+}
+
+.comment-block {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: #2a2a2a;
+  border-radius: 8px;
+}
+
+.comment {
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+
+.comment p {
+    margin: 4px 0;
+    font-size: 14px;
+    color: #ddd;
+}
+
+.comment strong {
+    color: #61dafb;
+}
+
+
+.seller-reply {
+  color: #b0e57c;
+  margin-left: 1rem;
+  font-style: italic;
+}
+
+.seller-reply strong {
+    color: #ff7373;
+}
 /* ================= Bidding Specific ================= */
 .bidding-page {
     text-align: center;

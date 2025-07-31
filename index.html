@@ -53,47 +53,41 @@
     </div>
 
     <script>
-        const bidProducts = [
-            {id: 101, name: "Rare Collectible Watch", currentBid: "$120", image: "product-pic/1.jpg"},
-            {id: 102, name: "Limited Edition Sneakers", currentBid: "$200", image: "product-pic/2.jpg"},
-            {id: 103, name: "Vintage Leather Bag", currentBid: "$150", image: "product-pic/3.jpg"},
-            {id: 104, name: "Collector's Antique Clock", currentBid: "$500", image: "product-pic/4.jpg"}
-        ];
+        Promise.all([
+            fetch('product.json').then(res => res.json()),
+            fetch('bidding-data.json').then(res => res.json())
+        ])
+        .then(([normalProducts, bidProducts]) => {
+            const productGrid = document.getElementById('product-grid');
+            const bidGrid = document.getElementById('bid-grid');
 
-        const bidGrid = document.getElementById('bid-grid');
-        bidGrid.innerHTML = bidProducts.map(p => `
-            <div class="product-card bidding">
-                <a href="bidding.html?id=${p.id}">
-                    <img src="${p.image}" alt="${p.name}">
-                </a>
-                <h3>${p.name}</h3>
-                <p>Current Bid: ${p.currentBid}</p>
-                <a href="bidding.html?id=${p.id}" class="bid-link">Bid Now</a>
-            </div>
-        `).join('');
+            // Render sản phẩm đấu giá
+            bidGrid.innerHTML = bidProducts.map(p => `
+                <div class="product-card bidding">
+                    <a href="bidding.html?id=${p.id}">
+                        <img src="${p.image}" alt="${p.name}">
+                    </a>
+                    <p><strong>${p.name}</strong></p>
+                    <p>Current Bid: $${p.currentBid}</p>
+                    <a href="bidding.html?id=${p.id}" class="bid-link">Buy Now</a>
+                </div>
+            `).join('');
 
-        const products = [
-            {id: 1, name: "Naruto", price: "$25", image: "product-pic/5.jpg"},
-            {id: 2, name: "Retro Sneakers", price: "$40", image: "product-pic/6.jpg"},
-            {id: 3, name: "Classic Leather Bag", price: "$35", image: "product-pic/7.jpg"},
-            {id: 4, name: "Vintage Jacket", price: "$50", image: "product-pic/8.jpg"},
-            {id: 5, name: "Gaming Headset", price: "$60", image: "product-pic/9.jpg"},
-            {id: 6, name: "Leather Wallet", price: "$20", image: "product-pic/10.jpg"},
-            {id: 7, name: "Antique Clock", price: "$120", image: "product-pic/11.jpg"},
-            {id: 8, name: "Sports Watch", price: "$70", image: "product-pic/12.jpg"}
-        ];
-
-        const grid = document.getElementById('product-grid');
-        grid.innerHTML = products.map(p => `
-            <div class="product-card">
-                <a href="product.html?id=${p.id}">
-                    <img src="${p.image}" alt="${p.name}">
-                </a>
-                <h3>${p.name}</h3>
-                <p>${p.price}</p>
-                <button class="buy-button" onclick="location.href='product.html?id=${p.id}'">Buy Now</button>
-            </div>
-        `).join('');
+            // Render sản phẩm thường
+            productGrid.innerHTML = normalProducts.map(p => `
+                <div class="product-card">
+                    <a href="product.html?id=${p.id}">
+                        <img src="${p.image}" alt="${p.name}">
+                    </a>
+                    <p><strong>${p.name}</strong></p>
+                    <p>$${p.price || 'Contact for price'}</p>
+                    <button class="buy-button" onclick="location.href='product.html?id=${p.id}'">Buy Now</button>
+                </div>
+            `).join('');
+        })
+        .catch(err => {
+            console.error('Error loading products:', err);
+        });
     </script>
 </body>
 </html>

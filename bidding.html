@@ -48,6 +48,12 @@
           const product = products.find(p => p.id === id);
           if (!product) {
             container.innerHTML = "<p>Product not found.</p>";
+            const textarea = document.getElementById("comment-input");
+            const charCount = document.getElementById("charCount");
+
+            textarea.addEventListener("input", () => {
+              charCount.textContent = textarea.value.length;
+            });
             return;
           }
 
@@ -70,21 +76,80 @@
                   <button class="bid-button" onclick="placeBid()">Place Bid</button>
                 </div>
 
-                <p class="product-shipping"><strong>Shipping Fee</strong> ${product.shipping_fee}</p>
+                <p class="product-shipping"><strong>Shipping fee</strong> ${product.shipping_fee}</p>
 
-                <div class="product-desc">
+                <div class="section-heading">
                   <h3>Item description</h3>
+                </div>
+                  
+                <div class="product-desc">
                   <p>${product.desc}</p>
                 </div>
 
+                <div class="section-heading">
+                  <h3>Item details</h3>
+                </div>
                 <div class="product-details">
-                  <h3>Item Details</h3>
                   <table>
                     <tr><th>Category</th><td>${product.category}</td></tr>
                     <tr><th>Brand</th><td>${product.brand}</td></tr>
                     <tr><th>Item condition</th><td>${product.condition}</td></tr>
                     <tr><th>Ships from</th><td>${product.ship_from}</td></tr>
                   </table>
+                </div>
+                
+                <div class="section-heading">
+                  <h3>Seller</h3>
+                </div>
+                <div class="product-seller">
+                  <div class="seller-content">
+                    <img src="${product.seller.avatar}" alt="${product.seller.name}" class="seller-avatar">
+                    <div class="seller-info">
+                      <p><strong>${product.seller.name}</strong></p>
+                      <p>${product.seller.rating}⭐ (${product.seller.reviews} reviews)</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="section-heading">
+                  <h3>Comments</h3>
+                </div>
+                <div class="comment-shortcuts">
+                  <label for="comment-input" class="comment-label">Comments on the product</label>
+                  <textarea id="comment-input" maxlength="100" placeholder="Comment"></textarea>
+                  <div class="comment-char-count"><span id="charCount">0</span>/100</div>
+
+                  <p class="comment-note">
+                    Let's think about the other person and make polite comments. Unpleasant language may be restricted or withdrawn from membership.
+                  </p>
+
+                  <button class="send-comment-btn">Send a comment</button>
+                </div>
+
+                <div class="section-heading">
+                  <h3>Other users comments</h3>
+                </div>
+
+                <div class="other-users-comments">
+                  ${
+                    product.comments.map(c => `
+                      <div class="comment-block">
+                        <div class="comment">
+                          <p><strong>${c.user}</strong> (${c.time}):</p>
+                          <p><strong>Rating: </strong>${c.rating}⭐</p>
+                          <p>${c.text}</p>
+                        </div>
+                        ${
+                          c.reply
+                            ? `<div class="seller-reply">
+                                <p><strong>${product.seller.name}</strong> replied:</p>
+                                <p>${c.reply}</p>
+                              </div>`
+                            : ''
+                        }
+                      </div>
+                    `).join("")
+                  }
                 </div>
               </div>
             </div>
