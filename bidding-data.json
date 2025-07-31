@@ -1,0 +1,46 @@
+[
+  {
+    "id": 101,
+    "name": "Rare Collectible Watch",
+    "image": "product-pic/1.jpg",
+    "shipping_fee": "$5",
+    "category": "Accessories",
+    "brand": "Omega",
+    "condition": "Used - Like New",
+    "ship_from": "Hanoi, Vietnam",
+    "desc": "A luxury collectible timepiece with a timeless design."
+  },
+  {
+    "id": 102,
+    "name": "Limited Edition Sneakers",
+    "image": "product-pic/2.jpg",
+    "shipping_fee": "$5",
+    "category": "Footwear",
+    "brand": "Nike",
+    "condition": "New",
+    "ship_from": "Ho Chi Minh City, Vietnam",
+    "desc": "Exclusive release sneakers perfect for street style lovers."
+  },
+  {
+    "id": 103,
+    "name": "Vintage Leather Bag",
+    "image": "product-pic/3.jpg",
+    "shipping_fee": "$5",
+    "category": "Bags",
+    "brand": "Gucci",
+    "condition": "Used - Good",
+    "ship_from": "Da Nang, Vietnam",
+    "desc": "Elegant vintage leather bag that adds class to any outfit."
+  },
+  {
+    "id": 104,
+    "name": "Collector's Antique Clock",
+    "image": "product-pic/4.jpg",
+    "shipping_fee": "$5",
+    "category": "Home Decor",
+    "brand": "Antique Co.",
+    "condition": "Vintage",
+    "ship_from": "Hue, Vietnam",
+    "desc": "A beautifully crafted antique clock for serious collectors."
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "name": "Naruto",
+    "price": "$25",
+    "shipping_fee": "$5",
+    "category": "Figure",
+    "brand": "Bandai",
+    "condition": "New",
+    "ship_from": "Tokyo, Japan",
+    "image": "product-pic/5.jpg",
+    "desc": "Limited edition Naruto figure."
+  },
+  {
+    "id": 2,
+    "name": "Retro Sneakers",
+    "price": "$40",
+    "shipping_fee": "$5",
+    "category": "Shoes",
+    "brand": "Nike",
+    "condition": "Used - Good",
+    "ship_from": "Los Angeles, USA",
+    "image": "product-pic/6.jpg",
+    "desc": "Classic retro-style sneakers from the early 2000s."
+  },
+  {
+    "id": 3,
+    "name": "MacBook Pro 2017",
+    "price": "$350",
+    "shipping_fee": "$15",
+    "category": "Electronics",
+    "brand": "Apple",
+    "condition": "Used - Fair",
+    "ship_from": "Hanoi, Vietnam",
+    "image": "product-pic/7.jpg",
+    "desc": "MacBook Pro 2017, 13-inch, used but working well."
+  },
+  {
+    "id": 4,
+    "name": "Canon AE-1 Film Camera",
+    "price": "$120",
+    "shipping_fee": "$10",
+    "category": "Cameras",
+    "brand": "Canon",
+    "condition": "Used - Good",
+    "ship_from": "Seoul, South Korea",
+    "image": "product-pic/8.jpg",
+    "desc": "Vintage Canon AE-1, perfect for film photography enthusiasts."
+  },
+  {
+    "id": 5,
+    "name": "Gaming Chair",
+    "price": "$90",
+    "shipping_fee": "$20",
+    "category": "Furniture",
+    "brand": "Secretlab",
+    "condition": "Used - Good",
+    "ship_from": "Singapore",
+    "image": "product-pic/9.jpg",
+    "desc": "Ergonomic gaming chair with adjustable armrests and lumbar support."
+  },
+  {
+    "id": 6,
+    "name": "Denim Jacket",
+    "price": "$30",
+    "shipping_fee": "$5",
+    "category": "Clothing",
+    "brand": "Levi's",
+    "condition": "Used - Very Good",
+    "ship_from": "Ho Chi Minh City, Vietnam",
+    "image": "product-pic/10.jpg",
+    "desc": "Classic Levi's denim jacket, size M."
+  },
+  {
+    "id": 7,
+    "name": "Acoustic Guitar",
+    "price": "$70",
+    "shipping_fee": "$10",
+    "category": "Instruments",
+    "brand": "Yamaha",
+    "condition": "Used - Good",
+    "ship_from": "Bangkok, Thailand",
+    "image": "product-pic/11.jpg",
+    "desc": "Yamaha acoustic guitar with soft case, perfect for beginners."
+  },
+  {
+    "id": 8,
+    "name": "JBL Bluetooth Speaker",
+    "price": "$45",
+    "shipping_fee": "$5",
+    "category": "Audio",
+    "brand": "JBL",
+    "condition": "Used - Like New",
+    "ship_from": "Kuala Lumpur, Malaysia",
+    "image": "product-pic/12.jpg",
+    "desc": "JBL portable speaker with excellent sound quality and battery life."
+  }
+]

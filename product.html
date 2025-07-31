@@ -23,48 +23,77 @@
             <!-- Product details will be injected here -->
         </main>
 
+        <!-- Zoom Modal -->
+        <div id="zoomModal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="zoomedImage">
+        </div>
+        
         <!-- Footer -->
         <footer class="page-footer">
             <p>&copy; 2025 Wishlock Shop | All Rights Reserved</p>
         </footer>
 
         <script>
-            // Product data
-            const products = [
-                { id: 1, name: "Naruto", price: "$25", image: "product-pic/5.jpg", desc: "Limited edition Naruto figure." },
-                { id: 2, name: "Retro Sneakers", price: "$40", image: "product-pic/6.jpg", desc: "Classic retro-style sneakers." },
-                { id: 3, name: "Classic Leather Bag", price: "$35", image: "product-pic/7.jpg", desc: "Stylish and durable leather bag." },
-                { id: 4, name: "Vintage Jacket", price: "$50", image: "product-pic/8.jpg", desc: "Timeless vintage fashion jacket." },
-                { id: 5, name: "Gaming Headset", price: "$60", image: "product-pic/9.jpg", desc: "High-quality surround sound headset." },
-                { id: 6, name: "Leather Wallet", price: "$20", image: "product-pic/10.jpg", desc: "Compact and elegant leather wallet." },
-                { id: 7, name: "Antique Clock", price: "$120", image: "product-pic/11.jpg", desc: "Collector’s antique timepiece." },
-                { id: 8, name: "Sports Watch", price: "$70", image: "product-pic/12.jpg", desc: "Durable water-resistant sports watch." }
-            ];
-
-            // Get product ID from URL
+            const container = document.getElementById("product-detail");
             const params = new URLSearchParams(window.location.search);
             const id = parseInt(params.get("id"));
-            const product = products.find(p => p.id === id);
-            const container = document.getElementById("product-detail");
 
-            // Display product
-            if (product) {
-                container.innerHTML = `
+            fetch("product-data.json")
+                .then(res => res.json())
+                .then(products => {
+                const product = products.find(p => p.id === id);
+
+                if (product) {
+                    container.innerHTML = `
                     <div class="product-detail-container">
-                        <div class="product-image">
-                            <img src="${product.image}" alt="${product.name}">
+                        <div class="item-image">
+                        <img src="${product.image}" alt="${product.name}" id="mainImage">
                         </div>
+
                         <div class="product-info">
-                            <h2>${product.name}</h2>
-                            <p class="product-desc">${product.desc}</p>
-                            <p class="product-price">${product.price}</p>
-                            <button class="buy-button">Buy Now</button>
+                        <h1>${product.name}</h1>
+                        <p class="product-price"><strong>${product.price}</strong></p>
+                        <p class="product-shipping"><strong>Shipping Fee</strong> ${product.shipping_fee}</p>
+
+                        <div class="product-desc">
+                            <h3>Item description</h3>
+                            <p>${product.description}</p>
+                        </div>
+
+                        <div class="product-details">
+                            <h3>Item Details</h3>
+                            <table>
+                            <tr><th>Category</th><td>${product.category}</td></tr>
+                            <tr><th>Brand</th><td>${product.brand}</td></tr>
+                            <tr><th>Item condition</th><td>${product.condition}</td></tr>
+                            <tr><th>Ships from</th><td>${product.ship_from}</td></tr>
+                            </table>
+                        </div>
                         </div>
                     </div>
-                `;
-            } else {
-                container.innerHTML = `<p style="text-align:center;">Product not found.</p>`;
-            }
+                    `;
+
+                    // Zoom modal
+                    const modal = document.getElementById("zoomModal");
+                    const modalImg = document.getElementById("zoomedImage");
+                    const closeBtn = document.querySelector(".close");
+                    const mainImg = document.getElementById("mainImage");
+
+                    mainImg.onclick = function () {
+                    modal.style.display = "block";
+                    modalImg.src = this.src;
+                    };
+                    closeBtn.onclick = () => modal.style.display = "none";
+                    window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+                } else {
+                    container.innerHTML = `<p style="text-align:center;">Product not found.</p>`;
+                }
+            })
+            .catch(err => {
+            console.error("Failed to load product data:", err);
+            container.innerHTML = `<p style="text-align:center;">Error loading product.</p>`;
+            });
         </script>
     </div>
 </body>

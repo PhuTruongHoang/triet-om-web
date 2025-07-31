@@ -37,7 +37,7 @@ main {
     padding: 15px 30px;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 100;
     border-bottom: 0.5px solid rgb(156, 156, 156);
 }
 .header-container {
@@ -196,143 +196,51 @@ section h2 {
     }
 }
 
-
-/* Bidding Page */
-.bidding-page {
-    text-align: center;
-    margin-top: 40px;
-}
-.bidding-product-container {
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 3rem;
-    padding: 40px 36px;
-    max-width: 1000px;
-    width: 100%;
-}
-.bidding-image {
-    width: 450px;
-    height: 450px;
-    border: 1px solid #333; 
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #444; 
+/* ================= General Style ================= */
+body {
+    background-color: #333;
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
-.bidding-image img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-
-.bidding-info {
+.wrapper {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-    max-width: 400px;
 }
-.timer {
+
+.page-header {
+    background: #222;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-bottom: 0.5px solid rgb(156, 156, 156);
+}
+
+.header-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+}
+
+.page-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-image {
+    height: 40px;
+}
+
+.logo-text {
     font-size: 22px;
     font-weight: bold;
-    color: orange;
-}
-.bidding-box {
-    display: flex;
-    justify-content: center;
-    gap: 4px;
-    margin-top: 10px;
-    width: 100%;
-}
-.bidding-box input {
-    flex: 1;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 3px;
-    border: 1px solid #ccc;
-}
-.bid-button {
-    padding: 10px 16px;
-    background: #007bff;
+    text-decoration: none;
     color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-weight: bold;
-}
-.bid-button:hover {
-    background: #0056b3;
-}
-
-/* Product Detail Layout */
-.product-detail-container {
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 3rem;
-    padding: 40px 36px;
-    max-width: 1000px;
-    width: 100%;
-}
-
-.product-image {
-    width: 450px;
-    height: 450px;
-    border: 1px solid #333; 
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #444; 
-}
-
-.product-image img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-}
-
-.product-info {
-    max-width: 500px;
-}
-
-.product-info h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-.product-price {
-    font-size: 1.5rem;
-    color: white;
-    margin-bottom: 1rem;
-}
-
-.product-desc {
-    font-size: 1rem;
-    color: white;
-    margin-bottom: 1.5rem;
-}
-
-.buy-button {
-    background-color: #2980b9;
-    color: white;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: background-color 0.3s;
-}
-
-.buy-button:hover {
-    background-color: #1f5f8b;
 }
 
 .back-link {
@@ -346,7 +254,221 @@ section h2 {
     text-decoration: underline;
 }
 
-/* Footer (reuse from index) */
+/* ================= Shared Product Layout ================= */
+.product-detail-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: auto;
+    color: white;
+    justify-content: center;
+}
+
+.item-image {
+    width: 400px;
+    height: 400px;
+    background-color: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border: 1px solid #444;
+    position: sticky;
+    top: 80px; /* Khoảng cách dưới header */
+    align-self: flex-start; /* Giúp sticky hoạt động trong flexbox */
+}
+
+.item-image img,
+.zoom-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    cursor: zoom-in;
+}
+
+.product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.product-info h1 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-price,
+.product-shipping {
+    font-size: 16px;
+    margin: 0;
+}
+
+.product-price strong,
+.product-shipping strong {
+    color: #ccc;
+    display: inline-block;
+    width: 140px;
+    text-align: left;
+}
+
+.product-desc h3,
+.product-details h3 {
+    font-size: 18px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #444;
+    padding-bottom: 4px;
+    color: #ccc;
+    text-align: left;
+}
+
+.product-desc p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.product-details table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+.product-details th {
+    text-align: left;
+    color: #ccc;
+    padding: 4px 10px 4px 0;
+    width: 140px;
+    vertical-align: top;
+}
+
+.product-details td {
+    color: #fff;
+    padding: 4px 0;
+}
+
+/* ================= Bidding Specific ================= */
+.bidding-page {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.bidding-product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 40px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+.bidding-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    color: #fff;
+}
+
+.bidding-info h1 {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0;
+}
+.bidding-info .timer {
+    font-size: 20px;
+    font-weight: bold;
+    color: orange;
+}
+
+#currentBid {
+    font-weight: bold;
+    color: #0f0;
+}
+
+.bidding-box {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.bidding-box input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.bid-button {
+    padding: 10px 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.bid-button:hover {
+    background: #0056b3;
+}
+
+/* ================= Modal Zoom ================= */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80%;
+    animation: zoomIn 0.3s ease;
+    border-radius: 8px;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0 }
+    to { transform: scale(1); opacity: 1 }
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close:hover {
+    color: #bbb;
+}
+
+/* ================= Footer ================= */
 .page-footer {
     text-align: center;
     padding: 15px;
@@ -355,19 +477,27 @@ section h2 {
     border-top: 0.5px solid rgb(156, 156, 156);
 }
 
-/* Responsive Design */
+/* ================= Responsive ================= */
 @media (max-width: 768px) {
     .product-detail-container {
         flex-direction: column;
         align-items: center;
     }
 
-    .product-image img {
-        max-width: 100%;
-        height: auto;
+    .product-info,
+    .bidding-info {
+        align-items: center;
+        text-align: center;
+        width: 100%;
     }
 
-    .product-info {
-        max-width: 100%;
+    .bidding-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .bidding-box input,
+    .bid-button {
+        width: 100%;
     }
 }

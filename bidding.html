@@ -1,110 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wishlock - Bidding Page</title>
-    <link rel="icon" type="image/png" href="product-pic/logo-pic.jpg">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wishlock - Bidding Page</title>
+  <link rel="icon" type="image/png" href="product-pic/logo-pic.jpg"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-    <div class="wrapper">
-        <!-- Header -->
-        <header class="page-header">
-            <div class="header-container">
-                <div class="page-logo">
-                    <img src="product-pic/logo-pic.jpg" class="logo-image" alt="Logo">
-                    <a href="index.html" class="logo-text">Wishlock</a>
-                </div>
-                <a href="index.html" class="back-link" style="color:white;">Back to Home</a>
-            </div>
-        </header>
+  <div class="wrapper">
+    <!-- Header -->
+    <header class="page-header">
+      <div class="header-container">
+        <div class="page-logo">
+          <img src="product-pic/logo-pic.jpg" class="logo-image" alt="Logo"/>
+          <a href="index.html" class="logo-text">Wishlock</a>
+        </div>
+        <a href="index.html" class="back-link" style="color:white;">Back to Home</a>
+      </div>
+    </header>
 
-        <!-- Nội dung sản phẩm đấu giá -->
-        <main class="bidding-page" style="text-align:center; margin:30px;">
-            <div id="bidding-product"></div>
+    <!-- Nội dung sản phẩm đấu giá -->
+    <main class="bidding-page" style="text-align:center; margin:30px;">
+      <div id="bidding-product"></div>
+    </main>
 
-            <!-- Form đặt giá
-            <div class="bidding-box" style="margin-top:20px;">
-                <input type="number" id="bidInput" placeholder="Enter your bid" min="1" style="padding:8px;">
-                <button class="bid-button" onclick="placeBid()">Place Bid</button>
-            </div> -->
-
-            <!-- Thời gian đếm ngược
-            <div class="timer" style="margin-top:15px;">
-                Auction ends in: <span id="countdown">00:05:00</span>
-            </div> -->
-        </main>
-        
-        <!-- Footer -->
-        <footer class="page-footer">
-            <p>&copy; 2025 Wishlock Shop | All Rights Reserved</p>
-        </footer>
-
-        <script>
-            // Danh sách sản phẩm đấu giá
-            const bidProducts = [
-                {id: 101, name: "Rare Collectible Watch", currentBid: "$120", image: "product-pic/1.jpg"},
-                {id: 102, name: "Limited Edition Sneakers", currentBid: "$200", image: "product-pic/2.jpg"},
-                {id: 103, name: "Vintage Leather Bag", currentBid: "$150", image: "product-pic/3.jpg"},
-                {id: 104, name: "Collector's Antique Clock", currentBid: "$500", image: "product-pic/4.jpg"}
-            ];
-
-            // Lấy ID từ URL
-            const params = new URLSearchParams(window.location.search);
-            const id = parseInt(params.get("id"));
-            const product = bidProducts.find(p => p.id === id);
-
-            const container = document.getElementById("bidding-product");
-            let currentBid = product ? product.currentBid : 0;
-
-            // Hiển thị thông tin sản phẩm
-            if (product) {
-                container.innerHTML = `
-                    <div class="bidding-product-container">
-                        <div class="bidding-image"> 
-                            <img src="${product.image}" alt="${product.name}">
-                        </div>
-                        <div class="bidding-info">
-                            <p class="timer">Auction ends in: <span class="timer" id="countdownTimer">00:05:00</span></p>
-                            <h2>${product.name}</h2>
-                            <p>Current Highest Bid: <span id="currentBid">${currentBid}</span></p>
-
-                            <div class="bidding-box">
-                                <input type="number" id="bidInput" placeholder="Enter your bid" min="1">
-                                <button class="bid-button" onclick="placeBid()">Place Bid</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            } else {
-                container.innerHTML = `<p>Product not found.</p>`;
-            }
-
-            // Xử lý đặt giá
-            function placeBid() {
-                const bid = parseInt(document.getElementById('bidInput').value);
-                if (bid > currentBid) {
-                    currentBid = bid;
-                    document.getElementById('currentBid').textContent = `$${currentBid}`;
-                    alert("Your bid has been placed!");
-                } else {
-                    alert("Your bid must be higher than the current bid!");
-                }
-            }
-
-            // Đếm ngược thời gian
-            let time = 5 * 60; // 5 phút
-            const countdownEl = document.getElementById('countdownTimer');
-            setInterval(() => {
-                if (time > 0) {
-                    time--;
-                    const min = String(Math.floor(time / 60)).padStart(2, '0');
-                    const sec = String(time % 60).padStart(2, '0');
-                    countdownEl.textContent = `00:${min}:${sec}`;
-                }
-            }, 1000);
-        </script>
+    <!-- Zoom Modal -->
+    <div id="zoomModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="zoomedImage" />
     </div>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <p>&copy; 2025 Wishlock Shop | All Rights Reserved</p>
+    </footer>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const id = parseInt(params.get("id"));
+      const container = document.getElementById("bidding-product");
+      let currentBid = 0;
+
+      fetch('bidding-data.json')
+        .then(res => res.json())
+        .then(products => {
+          const product = products.find(p => p.id === id);
+          if (!product) {
+            container.innerHTML = "<p>Product not found.</p>";
+            return;
+          }
+
+          currentBid = 100; 
+
+          container.innerHTML = `
+            <div class="bidding-product-container">
+              <div class="item-image zoom-container">
+                <img src="${product.image}" alt="${product.name}" class="zoom-img">
+              </div>
+
+              <div class="bidding-info">
+                <p class="timer">Auction ends in: <span class="timer" id="countdownTimer">00:05:00</span></p>
+                <h1>${product.name}</h1>
+
+                <p>Current Highest Bid: <span id="currentBid">$${currentBid}</span></p>
+
+                <div class="bidding-box">
+                  <input type="number" id="bidInput" placeholder="Enter your bid" min="1">
+                  <button class="bid-button" onclick="placeBid()">Place Bid</button>
+                </div>
+
+                <p class="product-shipping"><strong>Shipping Fee</strong> ${product.shipping_fee}</p>
+
+                <div class="product-desc">
+                  <h3>Item description</h3>
+                  <p>${product.desc}</p>
+                </div>
+
+                <div class="product-details">
+                  <h3>Item Details</h3>
+                  <table>
+                    <tr><th>Category</th><td>${product.category}</td></tr>
+                    <tr><th>Brand</th><td>${product.brand}</td></tr>
+                    <tr><th>Item condition</th><td>${product.condition}</td></tr>
+                    <tr><th>Ships from</th><td>${product.ship_from}</td></tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          `;
+
+          // Zoom logic
+          const zoomable = document.querySelector('.zoom-img');
+          const modal = document.getElementById("zoomModal");
+          const modalImg = document.getElementById("zoomedImage");
+          const closeBtn = document.querySelector(".close");
+
+          zoomable.onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+          };
+
+          closeBtn.onclick = function () {
+            modal.style.display = "none";
+          };
+
+          window.onclick = function (event) {
+            if (event.target === modal) {
+              modal.style.display = "none";
+            }
+          };
+
+          // Countdown
+          let time = 5 * 60;
+          const countdownEl = document.getElementById('countdownTimer');
+          setInterval(() => {
+            if (time > 0) {
+              time--;
+              const min = String(Math.floor(time / 60)).padStart(2, '0');
+              const sec = String(time % 60).padStart(2, '0');
+              countdownEl.textContent = `00:${min}:${sec}`;
+            }
+          }, 1000);
+        });
+
+      function placeBid() {
+        const bid = parseInt(document.getElementById('bidInput').value);
+        if (bid > currentBid) {
+          currentBid = bid;
+          document.getElementById('currentBid').textContent = `$${currentBid}`;
+          alert("Your bid has been placed!");
+        } else {
+          alert("Your bid must be higher than the current bid!");
+        }
+      }
+    </script>
+
+  </div>
 </body>
 </html>
